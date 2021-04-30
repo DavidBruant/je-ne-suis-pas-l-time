@@ -1,8 +1,30 @@
 <script>
-	export let name;
+	export let groupes;
 </script>
 
-<h2>Hello {name}! 🧝🏿</h2>
+{#each groupes as groupe}
+	<section>
+		<h2>{groupe.name}</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Nature</th>
+					<th>Fonction</th>
+					<th>Montant</th>
+				</tr>
+			</thead>
+			<tbody>
+				{#each groupe.elements.sort(({MtReal: MtReal1}, {MtReal: MtReal2}) => MtReal2 - MtReal1).slice(0, 50) as {Fonction, MtReal, Nature}}
+					<tr>
+						<td>{Nature}</td>
+						<td>{Fonction}</td>
+						<td>{MtReal.toFixed(2)}€</td>
+					</tr>
+				{/each}
+			</tbody>
+		</table>
+	</section>
+{/each}
 
 <style lang="scss">
 	
@@ -17,10 +39,16 @@
 		}
 	}
 
+	section{
+		max-width: 40rem;
+		margin: auto;
+		margin-bottom: 2rem;
+	}
+
 	h2 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
+		color: #222;
+		text-decoration: underline;
+		font-size: 1.4em;
 		font-weight: 100;
 	}
 	

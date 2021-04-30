@@ -6,10 +6,8 @@ styles:
     - href: "./build/bundle.css"
 ---
 
-# Test page
+# Données Gironde 2020
 
-Something should be written here:
+50 plus grosses ligne budgétaires par montants de chaque catégories
 
 <section class="svelte-main"></section>
-
-Did it work?
