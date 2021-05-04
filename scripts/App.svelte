@@ -1,10 +1,27 @@
 <script>
+	import {sum} from 'd3-array';
+
 	export let groupes;
+
+	$: limitedGroupes = groupes.map(({name, elements}) => {
+		const total = sum(elements.map(e => e.MtReal))
+
+		const sortedElements = elements.sort(({MtReal: MtReal1}, {MtReal: MtReal2}) => MtReal2 - MtReal1)
+
+		const index = sortedElements.findIndex((_, i) => {
+			return sum(sortedElements.slice(0, i).map(e => e.MtReal)) >= 0.95*total
+		})
+
+		return {
+			name,
+			elements: sortedElements.slice(0, index)
+		}
+	})
 </script>
 
-{#each groupes as groupe}
+{#each limitedGroupes as groupe}
 	<section>
-		<h2>{groupe.name}</h2>
+		<h2>{groupe.name} ({groupe.elements.length})</h2>
 		<table>
 			<thead>
 				<tr>
@@ -14,7 +31,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				{#each groupe.elements.sort(({MtReal: MtReal1}, {MtReal: MtReal2}) => MtReal2 - MtReal1).slice(0, 50) as {Fonction, MtReal, Nature}}
+				{#each groupe.elements as {Fonction, MtReal, Nature}}
 					<tr>
 						<td>{Nature}</td>
 						<td>{Fonction}</td>

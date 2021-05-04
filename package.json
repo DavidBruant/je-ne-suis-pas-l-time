@@ -24,6 +24,7 @@
     "svelte-preprocess": "^4.7.0"
   },
   "dependencies": {
+    "d3-array": "^2.12.1",
     "d3-fetch": "^2.0.0"
   }
 }

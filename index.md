@@ -8,6 +8,6 @@ styles:
 
 # Données Gironde 2020
 
-50 plus grosses ligne budgétaires par montants de chaque catégories
+Lignes budgétaires par ordre décroissant pour atteindre 95% du montant total de chaqu catégorie
 
 <section class="svelte-main"></section>
